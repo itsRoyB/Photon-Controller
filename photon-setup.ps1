@@ -16,7 +16,7 @@
 	
 	Set-Location C:\photon
 
-    #################################################################################
+    	#################################################################################
 	# Import CSV	
 	#################################################################################
 	$FilePath = Read-Host "Please provide the full path the CSV configuration file" 
@@ -30,7 +30,7 @@
 	$resource = $csv.Resource
 	$project = $csv.Project
 	$memory = $csv.Memory
-    $cpu = $csv.CPU
+    	$cpu = $csv.CPU
 	$vm_count = $csv.VM_Count
 	$cluster = $csv.Cluster
 	$master_ip = $csv.Master_IP
