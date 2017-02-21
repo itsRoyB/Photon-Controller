@@ -16,7 +16,7 @@
 	
 	Set-Location C:\photon
 
-    	#################################################################################
+   	#################################################################################
 	# Import CSV	
 	#################################################################################
 	$FilePath = Read-Host "Please provide the full path the CSV configuration file" 
@@ -39,8 +39,9 @@
 	$dns = $csv.DNS
 	$gateway = $csv.Gateway
 	$netmask = $csv.Netmask
-	$net_id = "669705d548340e325481"
+	$net_id = "669705d54754327147d8"
 	# Default dvpg_824 = "669705d54754327147d8"
+	# dvpg_828 = "669705d548340e325481"
 	
 	#################################################################################
 	# Set the Photon Controller Target
@@ -87,11 +88,12 @@
 	Write-Host "Creating $cluster Cluster in the Set Tenant/Project" -ForegroundColor Green
 	Write-Host "Cluster ID: " -ForegroundColor Yellow -NoNewLine
 	$cluster_msg = .\photon.exe -n cluster create -n $cluster -k KUBERNETES --master-ip $master_ip --etcd1 $etcd_ip --container-network 192.168.0.0/16 --dns $dns --gateway $gateway --netmask $netmask -w $net_id -c $workers 
+	$cluster_msg
 	
 	#################################################################################
 	# Check if Completed Message Appears
 	#################################################################################
-	if ($cluster_msg -like '*COMPLETE')
+	if ($cluster_msg -like "*cluster*created*")
 	{
 	exit
 	}
@@ -99,7 +101,6 @@
 	{
 	Write-Host " Cluster Did Not Deploy Successfully, Please Delete the VMs and Tenant and Run Again!" -ForegroundColor Red
 	}
-	
 	
 	
 	<#
